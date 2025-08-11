@@ -1,10 +1,10 @@
 /**
  * Middleware de validación con Joi para request body.
  */
-import type { RequestHandler } from 'express';
-import type Joi from 'joi';
+import type { RequestHandler } from "express";
+import type Joi from "joi";
 
-import { ValidationError } from '../../backend/common/errors/ValidationError';
+import { ValidationError } from "../../backend/common/errors/ValidationError";
 
 /**
  * Crea un middleware que valida el body contra un esquema Joi.
@@ -22,12 +22,12 @@ export function validateBody(schema: Joi.ObjectSchema): RequestHandler {
 
     if (error) {
       const details = error.details?.map((d) => d.message) ?? [];
-      return next(new ValidationError('VALIDATION_ERROR', 400, 'Body inválido', details));
+      return next(
+        new ValidationError("VALIDATION_ERROR", 400, "Body inválido", details),
+      );
     }
 
     req.body = value;
     return next();
   };
 }
-
-

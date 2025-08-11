@@ -9,9 +9,7 @@
     "dev:frontend": "vite frontend",
     "build": "rimraf dist && tsc -p tsconfig.json && vite build frontend",
     "test": "jest --runInBand --coverage",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "format": "prettier --write ."
+    "verify": "tsc -p tsconfig.json --noEmit && eslint . --ext .ts,.tsx,.js,.jsx && prettier --write ."
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",

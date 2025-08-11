@@ -5,4 +5,3 @@ routes:
     export: loginHandler
     validate:
       body: loginBody
-

@@ -21,10 +21,5 @@
     "jest.config.ts",
     "backend/types/**/*.d.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "frontend/**",
-    "dist"
-  ]
+  "exclude": ["node_modules", "frontend/**", "dist"]
 }
-

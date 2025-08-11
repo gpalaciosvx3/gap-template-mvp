@@ -1,9 +1,9 @@
 /**
  * Caso de uso de Login: delega validación al servicio de dominio y emite token.
  */
-import type { TokenRepository } from '../../domain/repositories/TokenRepository';
-import { AuthService } from '../../domain/services/AuthService';
-import type { LoginInput, LoginOutput } from '../dto/LoginDto';
+import type { TokenRepository } from "../../domain/repositories/TokenRepository";
+import { AuthService } from "../../domain/services/AuthService";
+import type { LoginInput, LoginOutput } from "../dto/LoginDto";
 
 export class LoginUseCase {
   private readonly authService: AuthService;
@@ -37,5 +37,3 @@ export class LoginUseCase {
     return { token };
   }
 }
-
-

@@ -1,8 +1,11 @@
 /**
  * Errores del dominio de Auth: códigos y fábrica tipada.
  */
-import { AuthErrorCodes, AuthErrorMessages } from '../../../../common/dto/AuthErrorDto';
-import { AppError } from '../../../../common/errors/AppError';
+import {
+  AuthErrorCodes,
+  AuthErrorMessages,
+} from "../../../../common/dto/AuthErrorDto";
+import { AppError } from "../../../../common/errors/AppError";
 
 export class AuthError extends AppError {
   /**
@@ -14,5 +17,3 @@ export class AuthError extends AppError {
     return new AuthError(code, 401, AuthErrorMessages[code]);
   }
 }
-
-

@@ -9,50 +9,48 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   parserOptions: {
-    sourceType: 'module',
+    sourceType: "module",
     ecmaVersion: 2021,
     ecmaFeatures: { jsx: true },
   },
-  plugins: ['@typescript-eslint', 'import', 'react', 'react-hooks'],
+  plugins: ["@typescript-eslint", "import", "react", "react-hooks"],
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:import/recommended',
-    'plugin:import/typescript',
-    'prettier',
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "prettier",
   ],
   settings: {
-    react: { version: 'detect' },
+    react: { version: "detect" },
   },
   rules: {
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
-    'import/order': [
-      'error',
+    "no-console": ["warn", { allow: ["warn", "error"] }],
+    "import/order": [
+      "error",
       {
-        'newlines-between': 'always',
-        alphabetize: { order: 'asc', caseInsensitive: true },
+        "newlines-between": "always",
+        alphabetize: { order: "asc", caseInsensitive: true },
       },
     ],
-    '@typescript-eslint/explicit-function-return-type': [
-      'warn',
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
       { allowExpressions: true },
     ],
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
     ],
-    'react/react-in-jsx-scope': 'off',
+    "react/react-in-jsx-scope": "off",
   },
   overrides: [
     {
-      files: ['backend/src/**/*.ts', 'gateway/**/*.ts'],
-      rules: { 'react/jsx-filename-extension': 'off' },
+      files: ["backend/src/**/*.ts", "gateway/**/*.ts"],
+      rules: { "react/jsx-filename-extension": "off" },
     },
   ],
 };
-
-

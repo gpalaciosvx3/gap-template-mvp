@@ -8,5 +8,3 @@ export type User = {
   passwordHash: string;
   name?: string;
 };
-
-

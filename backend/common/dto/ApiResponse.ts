@@ -11,5 +11,3 @@ export type ApiResponse<T = unknown> = {
   };
   meta?: Record<string, unknown>;
 };
-
-

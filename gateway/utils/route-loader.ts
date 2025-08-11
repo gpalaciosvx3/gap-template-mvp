@@ -3,8 +3,8 @@
  * El YAML define: method, path, module, export y opcionalmente validate.body (clave de validador).
  */
 import fs from "fs";
-import path from "path";
 import { createRequire } from "module";
+import path from "path";
 
 import type { Express, RequestHandler } from "express";
 import { load as loadYaml } from "js-yaml";

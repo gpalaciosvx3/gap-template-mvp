@@ -13,13 +13,19 @@ import { getEndpointName } from "../utils/endpoint-name";
 export function requestLogger(): RequestHandler {
   return (req, res, next) => {
     const start = Date.now();
-    const endpointName = getEndpointName(req.method, req.originalUrl, req.route?.path);
+    const endpointName = getEndpointName(
+      req.method,
+      req.originalUrl,
+      req.route?.path,
+    );
     logger.info(`────── INICIO - ${endpointName} ──────`);
     res.on("finish", () => {
       const durationMs = Date.now() - start;
       const success = res.statusCode < 400;
       const statusIcon = success ? "✅" : "❌";
-      logger.info(`────── FINALIZÓ - ${endpointName} ${statusIcon} (${durationMs}ms) ──────`);
+      logger.info(
+        `────── FINALIZÓ - ${endpointName} ${statusIcon} (${durationMs}ms) ──────`,
+      );
     });
     next();
   };

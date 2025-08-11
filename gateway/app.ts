@@ -12,9 +12,9 @@ import { logger } from "../backend/common/logger/Logger";
 
 import { errorHandler } from "./middlewares/error-handler";
 import { requestLogger } from "./middlewares/request-logger";
-import { loginBodySchema } from "./middlewares/schemas";
 import { validateBody } from "./middlewares/validate-body";
 import { loadYamlRoutes } from "./utils/route-loader";
+import { loginBodySchema } from "./validation/auth.schemas";
 
 export function createGatewayApp(): Express {
   dotenv.config();

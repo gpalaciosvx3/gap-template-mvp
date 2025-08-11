@@ -1,11 +1,8 @@
 /**
- * Esquemas Joi centralizados para validaciones del gateway.
+ * Esquemas de validación para el módulo Auth en el gateway.
  */
 import Joi from "joi";
 
-/**
- * Esquema del body de login.
- */
 export const loginBodySchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(6).max(100).required(),

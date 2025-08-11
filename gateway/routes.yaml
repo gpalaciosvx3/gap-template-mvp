@@ -1,0 +1,8 @@
+routes:
+  - method: POST
+    path: /api/auth/login
+    module: backend/src/auth/infrastructure/App.ts
+    export: loginHandler
+    validate:
+      body: loginBody
+

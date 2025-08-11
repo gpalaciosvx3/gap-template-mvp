@@ -1,0 +1,58 @@
+---
+description: "Conjunto de reglas CURSOR para backend y Gateway"
+
+globs:
+"backend/**"
+"gateway/**"
+
+alwaysApply: true
+
+rules:
+name: "Capas del módulo"
+description: "Cada módulo en backend/src/<modulo> debe contener únicamente domain/, application/ e infrastructure/. Prohibido crear otras capas."
+
+name: "Punto de entrada por módulo"
+description: "Cada módulo expone un App.tsx que recibe la petición del gateway y delega al controller en infrastructure/controllers."
+
+name: "Controladores delgados"
+description: "Los controllers no contienen lógica de negocio, ni validación, ni autenticación. Solo llaman a un único caso de uso y retornan con Presenter/DTO."
+
+name: "Controladores atrapa errores"
+description: "Los controlladores se encargarán de hacer el catch de los errores en toda la aplicación y ejecutar el next al middleware de errores centralizados. Es decir, en el resto de capas del backend deberemos solo propagar los errores para que sean tomados por los controller."
+
+name: "Dominio puro"
+description: "En domain/ solo existen entidades, value-objects, servicios de dominio, errores y contratos de repositorios. Sin dependencias de Express, Prisma u otros frameworks."
+
+name: "Aplicación orquestadora"
+description: "En application/ residen casos de uso, DTOs y mappers. No hay I/O, ni Express, ni ORM. Los errores de dominio se propagan sin capturarse."
+
+name: "Infrastructure como adaptador"
+description: "Las implementaciones de repositorios (Prisma), adapters HTTP, y controllers van en infrastructure/. La configuración y wiring técnico también."
+
+name: "Common reutilizable"
+description: "Componentes transversales (DTOs, Presenters, Errors, Logger, Middlewares) viven en backend/common. No duplicar utilidades en módulos."
+
+name: "Gateway central"
+description: "El gateway mapea rutas en routes.yaml hacia cada App.tsx de módulo y documenta endpoints en openapi.yaml. Autenticación, autorización y validaciones cross-cutting se aplican en gateway."
+
+name: "Validación con Joi"
+description: "Toda validación de requests es middleware (gateway o common). Los controllers no validan."
+
+name: "Logging estandarizado"
+description: "Usar Winston centralizado. Middleware de request debe registrar 'INICIO' y 'FIN (ms)' del manejo de la petición. No loggear PII ni secretos."
+
+name: "Errores centralizados"
+description: "Usar clases de error personalizadas (dominio, validación, auth). El middleware global de errores formatea la salida con DTO homogéneo."
+
+name: "Nomenclatura"
+description: "Módulos en kebab-case (usuarios), clases y servicios en PascalCase (UsuariosService), funciones camelCase (consultarUsuarios) y constantes UPPER_SNAKE_CASE (ERROR_NOT_FOUND_DATA)."
+
+name: "Documentación obligatoria"
+description: "Cada endpoint debe existir en openapi.yaml. Cada archivo debe tener JSDoc de cabecera (qué hace, params, return)."
+
+name: "Testing backend"
+description: "Los tests viven en backend/test (no plural). Estructura: /unit y /bdd (features, steps, fixtures). Mock con jest.spyOn."
+
+name: "Dependencias por capa"
+description: "Prohibido importar infrastructure desde application o domain. Cumplir DIP: casos de uso dependen de interfaces del dominio."
+---

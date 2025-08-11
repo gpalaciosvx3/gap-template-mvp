@@ -1,0 +1,48 @@
+---
+description: "Conjunto de reglas CURSOR generales de arquitectura, estilo y CI/CD para gap-template-mvp"
+globs:
+
+"*"
+"backend/**"
+"frontend/**"
+"gateway/**"
+".github/**"
+".cursor/**"
+
+alwaysApply: true
+
+rules:
+
+name: "Documentacion en código"
+description: "En el código solo documentaremos con JSDoc al inicio del archivo; especificando inputs/outpus, y no colocaremos comentarios entre líneas del código"
+
+name: "Monolito modular"
+description: "Estructura raíz con /backend, /frontend y /gateway. En root: package.json, jest.config.ts, tsconfig.json, linters y workflows."
+
+name: "Plantilla mínima implementada"
+description: "Solo gateway operativo, backend con módulo auth y endpoint de login, y frontend con una page que muestra Hola Mundo."
+
+name: "Clean Architecture + SOLID"
+description: "Aplicar SRP, OCP y DIP. Casos de uso dependen de interfaces del dominio. Evitar acoplamientos innecesarios."
+
+name: "Sin Husky"
+description: "No configurar Husky en la plantilla. Los checks se ejecutan en CI (GitHub Actions)."
+
+name: "CI/CD"
+description: "Workflows en .github/workflows para lint, test y build. Preparado para deploy en Railway (backend y estáticos del frontend)."
+
+name: "OpenAPI como contrato"
+description: "Gateway/openapi.yaml es la fuente de verdad de endpoints. Mantener rutas sincronizadas con routes.yaml y controladores."
+
+name: "Convenciones de commits"
+description: "Seguir Conventional Commits (feat, fix, docs, style, refactor, test, ci, chore). Mantener PRs pequeñas y revisables."
+
+name: "Seguridad"
+description: "No loggear PII o secretos. Variables de entorno validadas. Sanitizar entradas y aplicar validaciones con Joi en gateway."
+
+name: "Performance base"
+description: "Usar paginación por defecto en listados, evitar N+1 en repositorios. Seleccionar campos mínimos requeridos desde application."
+
+name: "Documentación por archivo"
+description: "Cada archivo debe iniciar con JSDoc (propósito, params, return, detalles relevantes). Evitar comentarios en línea."
+---

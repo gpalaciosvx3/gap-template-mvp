@@ -1,0 +1,34 @@
+---
+description: "Conjunto de reglas CURSOR para el frontend (React + MUI) en gap-template-mvp"
+globs:
+
+"frontend/**"
+
+alwaysApply: true
+
+rules:
+
+name: "Stack de frontend"
+description: "Usar React (JSX) + Material UI. No TypeScript."
+
+name: "Estructura mínima"
+description: "Mantener /frontend/src con components/, pages/, hooks/, services/ y theme/. No crear carpeta de tests en frontend."
+
+name: "Componentes atómicos reutilizables"
+description: "Cada componente vive en carpeta PascalCase con Componente.jsx, Componente.css e index.js. Evitar lógica pesada; favorecer composición."
+
+name: "Convenciones de nombres"
+description: "Archivos de componentes en PascalCase (HolaMundo.jsx). Hooks en camelCase (useAuth). Sin abreviaturas crípticas."
+
+name: "Theming centralizado"
+description: "Definir tema MUI en /theme y usarlo en toda la app. Mantener tipografía y espaciados consistentes."
+
+name: "Consumo de API vía gateway"
+description: "Todas las llamadas a backend usan la baseURL del gateway. No consumir servicios directamente del backend saltándose el gateway."
+
+name: "Manejo de estados de red"
+description: "UI debe considerar estados de carga y error (LoaderApp, ErrorBanner). Nunca exponer datos sensibles en el cliente."
+
+name: "JSDoc y Clean Code"
+description: "Agregar JSDoc de cabecera por archivo. Mantener funciones pequeñas, nombres significativos y evitar duplicación."
+---

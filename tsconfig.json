@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "lib": ["ES2020"],
+    "outDir": "dist",
+    "rootDir": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "types": ["node", "jest"]
+  },
+  "include": [
+    "backend/**/*.ts",
+    "backend/**/*.tsx",
+    "gateway/**/*.ts",
+    "jest.config.ts",
+    "backend/types/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "frontend/**",
+    "dist"
+  ]
+}
+

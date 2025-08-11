@@ -1,12 +1,15 @@
 /**
- * Adaptador de infraestructura para emitir JWT usando jsonwebtoken.
+ * Adaptador de infraestructura que implementa el repositorio de emisión de tokens
+ * usando JSON Web Tokens. Cumple el contrato `TokenRepository` del dominio.
  */
 import jwt from 'jsonwebtoken';
 
 import type { TokenRepository } from '../../domain/repositories/TokenRepository';
 
-
-export class JwtTokenProvider implements TokenRepository {
+/**
+ * Repositorio de tokens basado en JWT.
+ */
+export class JwtTokenRepository implements TokenRepository {
   private readonly secret: string;
 
   /**

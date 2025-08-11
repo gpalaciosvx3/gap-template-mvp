@@ -1,6 +1,6 @@
 /**
- * Implementación en memoria del repositorio de usuarios.
- * Útil para MVP y pruebas sin base de datos.
+ * Adaptador de infraestructura que implementa el repositorio de usuarios en memoria.
+ * Útil para MVP/pruebas. Implementa `AuthRepository` usando una colección local.
  */
 import bcrypt from 'bcryptjs';
 

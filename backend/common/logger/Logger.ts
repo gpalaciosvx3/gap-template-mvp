@@ -37,7 +37,7 @@ function createLocalTimeFormatter(): winston.Logform.Format {
  */
 const consoleFormat = winston.format.printf(
   (info: winston.Logform.TransformableInfo & { timestamp?: string }): string =>
-    `[${info.timestamp ?? ""}] ${info.level}: ${String(info.message)}`,
+    `[${info.timestamp ?? ""}] - [${info.level}]: ${String(info.message)}`,
 );
 
 /**

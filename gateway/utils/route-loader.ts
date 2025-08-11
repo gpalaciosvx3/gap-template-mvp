@@ -4,7 +4,7 @@
  */
 import fs from "fs";
 import path from "path";
-import { pathToFileURL } from "url";
+import { createRequire } from "module";
 
 import type { Express, RequestHandler } from "express";
 import { load as loadYaml } from "js-yaml";
@@ -56,8 +56,8 @@ export async function loadYamlRoutes(
     }
 
     const fullModulePath = path.resolve(process.cwd(), route.module);
-    const fileUrl = pathToFileURL(fullModulePath).href;
-    const imported = (await import(fileUrl)) as Record<string, unknown>;
+    const nodeRequire = createRequire(process.cwd() + path.sep);
+    const imported = nodeRequire(fullModulePath) as Record<string, unknown>;
     const routeHandler = imported[route.export] as RequestHandler;
     if (typeof routeHandler !== "function") {
       throw new Error(

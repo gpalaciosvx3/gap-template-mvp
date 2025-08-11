@@ -4,6 +4,7 @@
 import type { RequestHandler } from "express";
 
 import { logger } from "../../backend/common/logger/Logger";
+import { getEndpointName } from "../utils/endpoint-name";
 
 /**
  * Crea el middleware de logging.
@@ -12,15 +13,13 @@ import { logger } from "../../backend/common/logger/Logger";
 export function requestLogger(): RequestHandler {
   return (req, res, next) => {
     const start = Date.now();
-    logger.info("REQUEST_START", { method: req.method, url: req.originalUrl });
+    const endpointName = getEndpointName(req.method, req.originalUrl, req.route?.path);
+    logger.info(`────── INICIO - ${endpointName} ──────`);
     res.on("finish", () => {
       const durationMs = Date.now() - start;
-      logger.info("REQUEST_END", {
-        method: req.method,
-        url: req.originalUrl,
-        status: res.statusCode,
-        ms: durationMs,
-      });
+      const success = res.statusCode < 400;
+      const statusIcon = success ? "✅" : "❌";
+      logger.info(`────── FINALIZÓ - ${endpointName} ${statusIcon} (${durationMs}ms) ──────`);
     });
     next();
   };

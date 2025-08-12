@@ -5,11 +5,11 @@
  * @param {{ title: string }} props Propiedades del componente
  * @returns {JSX.Element} Barra de navegación superior
  */
-import { AppBar, Toolbar, Typography } from "@mui/material";
-import React from "react";
+import { AppBar, Toolbar, Typography } from '@mui/material';
+import React from 'react';
 
-import type { HomeHeaderProps } from "../../types/components";
-import "./HomeHeader.css";
+import type { HomeHeaderProps } from '../../types/components';
+import './HomeHeader.css';
 
 export default function HomeHeader({ title }: HomeHeaderProps): JSX.Element {
   return (

@@ -14,17 +14,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/LoginRequest"
+              $ref: '#/components/schemas/LoginRequest'
       responses:
-        "200":
+        '200':
           description: Autenticación correcta
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/LoginResponse"
-        "400":
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
           description: Error de validación
-        "401":
+        '401':
           description: Credenciales inválidas
 components:
   schemas:

@@ -5,11 +5,11 @@
  * @param {{ title: string }} props Propiedades del componente
  * @returns {JSX.Element} Nodo JSX con el contenido del Home
  */
-import { Box, Typography } from "@mui/material";
-import React from "react";
+import { Box, Typography } from '@mui/material';
+import React from 'react';
 
-import type { HomeProps } from "../../types/components";
-import "./Home.css";
+import type { HomeProps } from '../../types/components';
+import './Home.css';
 
 export default function Home({ title }: HomeProps): JSX.Element {
   return (

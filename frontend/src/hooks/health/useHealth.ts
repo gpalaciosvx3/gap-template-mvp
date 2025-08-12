@@ -2,10 +2,10 @@
  * Hook para obtener el estado de salud del Gateway (`/health`).
  * Encapsula la lógica de carga, datos y error para su consumo en UI.
  */
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { getHealth } from "../../services/health/healthService";
-import type { UseHealthState } from "../../types/health";
+import { getHealth } from '../../services/health/healthService';
+import type { UseHealthState } from '../../types/health';
 
 /**
  * Realiza la consulta de salud del Gateway y expone estado de carga, datos y error.
@@ -28,8 +28,7 @@ export function useHealth(): UseHealthState {
       })
       .catch((err: unknown) => {
         if (!isActive) return;
-        const message =
-          err instanceof Error ? err.message : "Error desconocido";
+        const message = err instanceof Error ? err.message : 'Error desconocido';
         setState({ data: null, isLoading: false, error: message });
       });
 

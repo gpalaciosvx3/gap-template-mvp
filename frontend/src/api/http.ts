@@ -3,8 +3,8 @@
  * Proporciona helpers tipados para llamadas GET, POST, PUT, PATCH y DELETE.
  */
 
-import { API_GATEWAY_URL } from "./config";
-import { ApiError, mapGatewayError, networkError } from "./errors";
+import { API_GATEWAY_URL } from './config';
+import { ApiError, mapGatewayError, networkError } from './errors';
 
 /** Proveedor global de token (Authorization). */
 let authTokenProvider: (() => string | null) | null = null;
@@ -18,11 +18,11 @@ export function setAuthTokenProvider(provider: () => string | null): void {
 
 /** Opciones comunes para peticiones JSON */
 function buildJsonHeaders(extra?: HeadersInit): HeadersInit {
-  const base: Record<string, string> = { "Content-Type": "application/json" };
+  const base: Record<string, string> = { 'Content-Type': 'application/json' };
 
   const token = authTokenProvider ? authTokenProvider() : null;
   if (token) {
-    base["Authorization"] = `Bearer ${token}`;
+    base['Authorization'] = `Bearer ${token}`;
   }
 
   return { ...base, ...(extra ?? {}) };
@@ -32,7 +32,7 @@ function buildJsonHeaders(extra?: HeadersInit): HeadersInit {
  * Construye una URL concatenando la base del Gateway con el path indicado.
  */
 function buildUrl(path: string): string {
-  const normalized = path.startsWith("/") ? path : `/${path}`;
+  const normalized = path.startsWith('/') ? path : `/${path}`;
   return `${API_GATEWAY_URL}${normalized}`;
 }
 
@@ -52,11 +52,7 @@ async function safeParseJson(response: Response): Promise<unknown | undefined> {
 /**
  * Manejo estándar de respuestas: lanza ApiError si no es ok y parsea JSON.
  */
-async function handleJsonResponse<T>(
-  method: string,
-  url: string,
-  response: Response,
-): Promise<T> {
+async function handleJsonResponse<T>(method: string, url: string, response: Response): Promise<T> {
   if (!response.ok) {
     const body = await safeParseJson(response);
     throw mapGatewayError({ status: response.status, method, url, body });
@@ -68,11 +64,7 @@ async function handleJsonResponse<T>(
   return body as T;
 }
 
-async function doFetch<T>(
-  method: string,
-  path: string,
-  init?: RequestInit,
-): Promise<T> {
+async function doFetch<T>(method: string, path: string, init?: RequestInit): Promise<T> {
   const url = buildUrl(path);
   try {
     const response = await fetch(url, {
@@ -91,18 +83,14 @@ async function doFetch<T>(
  * Realiza una petición HTTP GET y retorna JSON tipado.
  */
 export function apiGet<T>(path: string, init?: RequestInit): Promise<T> {
-  return doFetch<T>("GET", path, init);
+  return doFetch<T>('GET', path, init);
 }
 
 /**
  * Realiza una petición HTTP POST con cuerpo JSON y retorna JSON tipado.
  */
-export function apiPost<T, B = unknown>(
-  path: string,
-  body?: B,
-  init?: RequestInit,
-): Promise<T> {
-  return doFetch<T>("POST", path, {
+export function apiPost<T, B = unknown>(path: string, body?: B, init?: RequestInit): Promise<T> {
+  return doFetch<T>('POST', path, {
     ...(init ?? {}),
     body: body != null ? JSON.stringify(body) : undefined,
   });
@@ -111,12 +99,8 @@ export function apiPost<T, B = unknown>(
 /**
  * Realiza una petición HTTP PUT con cuerpo JSON y retorna JSON tipado.
  */
-export function apiPut<T, B = unknown>(
-  path: string,
-  body?: B,
-  init?: RequestInit,
-): Promise<T> {
-  return doFetch<T>("PUT", path, {
+export function apiPut<T, B = unknown>(path: string, body?: B, init?: RequestInit): Promise<T> {
+  return doFetch<T>('PUT', path, {
     ...(init ?? {}),
     body: body != null ? JSON.stringify(body) : undefined,
   });
@@ -125,12 +109,8 @@ export function apiPut<T, B = unknown>(
 /**
  * Realiza una petición HTTP PATCH con cuerpo JSON y retorna JSON tipado.
  */
-export function apiPatch<T, B = unknown>(
-  path: string,
-  body?: B,
-  init?: RequestInit,
-): Promise<T> {
-  return doFetch<T>("PATCH", path, {
+export function apiPatch<T, B = unknown>(path: string, body?: B, init?: RequestInit): Promise<T> {
+  return doFetch<T>('PATCH', path, {
     ...(init ?? {}),
     body: body != null ? JSON.stringify(body) : undefined,
   });
@@ -140,5 +120,5 @@ export function apiPatch<T, B = unknown>(
  * Realiza una petición HTTP DELETE y retorna JSON tipado.
  */
 export function apiDelete<T>(path: string, init?: RequestInit): Promise<T> {
-  return doFetch<T>("DELETE", path, init);
+  return doFetch<T>('DELETE', path, init);
 }

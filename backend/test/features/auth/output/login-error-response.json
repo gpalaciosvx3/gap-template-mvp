@@ -1,0 +1,12 @@
+{
+  "INVALID_EMAIL": {
+    "code": "AUTH.INVALID_CREDENTIALS",
+    "status": 401,
+    "message": "Credenciales inválidas"
+  },
+  "INVALID_PASSWORD": {
+    "code": "AUTH.INVALID_CREDENTIALS",
+    "status": 401,
+    "message": "Credenciales inválidas"
+  }
+}

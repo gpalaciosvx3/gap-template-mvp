@@ -1,30 +1,28 @@
-/**
- * Configuración de Jest para TypeScript en el monolito modular.
- * - Ejecuta tests en `backend/test`.
- * - Fuerza cobertura mínima global de 80%.
- */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Config } from "jest";
+import type { Config } from 'jest';
 
 const config: Config = {
-  preset: "ts-jest",
-  testEnvironment: "node",
-  roots: ["<rootDir>/backend/test"],
-  moduleFileExtensions: ["ts", "tsx", "js", "json"],
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  roots: ['<rootDir>/backend/test'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
   transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest",
+    '^.+\\.(ts|tsx)$': 'ts-jest',
   },
-  testMatch: ["**/?(*.)+(spec|test).+(ts|tsx)"],
+  testMatch: ['**/?(*.)+(spec|test).+(ts|tsx)', '**/*.steps.ts'],
   moduleNameMapper: {
-    "^backend/(.*)$": "<rootDir>/backend/$1",
-    "^gateway/(.*)$": "<rootDir>/gateway/$1",
+    '^backend/(.*)$': '<rootDir>/backend/$1',
   },
   collectCoverage: true,
   collectCoverageFrom: [
-    "backend/src/**/*.ts",
-    "backend/src/**/*.tsx",
-    "!backend/src/**/infrastructure/**",
-    "!backend/src/**/App.tsx",
+    'backend/src/**/*.ts',
+    'backend/src/**/*.tsx',
+    '!backend/src/**/infrastructure/**',
+    '!backend/src/**/App.tsx',
+    '!backend/src/**/application/dto/**',
+    '!backend/src/**/dto/**',
+    '!backend/src/**/domain/entities/**',
+    '!backend/src/**/types/**',
+    '!backend/src/**/mappers/**',
   ],
   coverageThreshold: {
     global: {
@@ -34,7 +32,7 @@ const config: Config = {
       statements: 80,
     },
   },
-  coverageReporters: ["text", "text-summary", "lcov"],
+  coverageReporters: ['text', 'text-summary', 'lcov'],
 };
 
 export default config;

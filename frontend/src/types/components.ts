@@ -2,7 +2,7 @@
  * Tipos compartidos de componentes de UI.
  */
 
-import type React from "react";
+import type React from 'react';
 
 /** Props para `HomeHeader` */
 export interface HomeHeaderProps {

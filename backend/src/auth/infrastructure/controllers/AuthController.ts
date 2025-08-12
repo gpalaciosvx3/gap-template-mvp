@@ -2,10 +2,10 @@
  * Controlador HTTP del módulo Auth.
  * Maneja endpoints de autenticación delegando a casos de uso y enviando errores al middleware.
  */
-import type { RequestHandler } from "express";
+import type { RequestHandler } from 'express';
 
-import { ResponsePresenter } from "../../../../common/presenters/ResponsePresenter";
-import type { LoginUseCase } from "../../application/usecases/LoginUseCase";
+import { ResponsePresenter } from '../../../../common/presenters/ResponsePresenter';
+import type { LoginUseCase } from '../../application/usecases/LoginUseCase';
 
 export class AuthController {
   private readonly loginUseCase: LoginUseCase;

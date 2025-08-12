@@ -1,9 +1,9 @@
 /**
  * Presenter que construye y envía respuestas HTTP homogéneas.
  */
-import type { Response } from "express";
+import type { Response } from 'express';
 
-import type { ApiResponse } from "../dto/ApiResponse";
+import type { ApiResponse } from '../dto/ApiResponse';
 
 export class ResponsePresenter {
   /**
@@ -16,19 +16,11 @@ export class ResponsePresenter {
   /**
    * Construye una respuesta de error con código y mensaje
    */
-  static fail(error: {
-    code: string;
-    message: string;
-    details?: unknown;
-  }): ApiResponse<never> {
+  static fail(error: { code: string; message: string; details?: unknown }): ApiResponse<never> {
     return { success: false, error };
   }
 
-  static ok<T>(
-    res: Response,
-    data: T,
-    meta?: Record<string, unknown>,
-  ): Response {
+  static ok<T>(res: Response, data: T, meta?: Record<string, unknown>): Response {
     return res.status(200).json(ResponsePresenter.success(data, meta));
   }
 

@@ -51,7 +51,7 @@ name: "Documentación obligatoria"
 description: "Cada endpoint debe existir en openapi.yaml. Cada archivo debe tener JSDoc de cabecera (qué hace, params, return)."
 
 name: "Testing backend"
-description: "Los tests viven en backend/test (no plural). Estructura: /unit y /bdd (features, steps, fixtures). Mock con jest.spyOn."
+description: "Los tests viven en backend/test. Estructura: features/[modulo] con carpetas input(archivos json con parametros de entrada esperado), output (archivos json con parametros de salida esperado), mock (mockeo de infraestructura o necesario), steps(logica de las pruebas) y en la raíz una plantilla .feature"
 
 name: "Dependencias por capa"
 description: "Prohibido importar infrastructure desde application o domain. Cumplir DIP: casos de uso dependen de interfaces del dominio."

@@ -28,7 +28,7 @@ export class ApiError extends Error {
     raw?: unknown;
   }) {
     super(params.message);
-    this.name = "ApiError";
+    this.name = 'ApiError';
     this.status = params.status;
     this.code = params.code;
     this.details = params.details;
@@ -42,27 +42,27 @@ export class ApiError extends Error {
 function defaultMessageForStatus(status: number): string {
   switch (status) {
     case 400:
-      return "Solicitud inválida";
+      return 'Solicitud inválida';
     case 401:
-      return "No autorizado";
+      return 'No autorizado';
     case 403:
-      return "Acceso prohibido";
+      return 'Acceso prohibido';
     case 404:
-      return "Recurso no encontrado";
+      return 'Recurso no encontrado';
     case 409:
-      return "Conflicto de datos";
+      return 'Conflicto de datos';
     case 422:
-      return "Datos inválidos";
+      return 'Datos inválidos';
     case 429:
-      return "Demasiadas solicitudes";
+      return 'Demasiadas solicitudes';
     case 500:
-      return "Error interno del servidor";
+      return 'Error interno del servidor';
     case 502:
-      return "Puerta de enlace inválida";
+      return 'Puerta de enlace inválida';
     case 503:
-      return "Servicio no disponible";
+      return 'Servicio no disponible';
     case 504:
-      return "Tiempo de espera agotado";
+      return 'Tiempo de espera agotado';
     default:
       return `Error HTTP ${status}`;
   }
@@ -93,16 +93,12 @@ export function mapGatewayError(params: {
 }
 
 /** Crea un ApiError para errores de red (sin respuesta HTTP) */
-export function networkError(params: {
-  method: string;
-  url: string;
-  cause?: unknown;
-}): ApiError {
+export function networkError(params: { method: string; url: string; cause?: unknown }): ApiError {
   const { method, url, cause } = params;
   return new ApiError({
     status: 0,
-    code: "NETWORK_ERROR",
-    message: "No se pudo conectar con el servidor",
+    code: 'NETWORK_ERROR',
+    message: 'No se pudo conectar con el servidor',
     method,
     url,
     raw: cause,

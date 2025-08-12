@@ -8,8 +8,5 @@ export interface TokenRepository {
    * @param payload Datos a firmar
    * @param expiresInSeconds Segundos hasta la expiración
    */
-  sign(
-    payload: Record<string, unknown>,
-    expiresInSeconds: number,
-  ): Promise<string>;
+  sign(payload: Record<string, unknown>, expiresInSeconds: number): Promise<string>;
 }

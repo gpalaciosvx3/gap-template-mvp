@@ -9,5 +9,4 @@
  */
 declare const PROCESS: { ENV: { API_GATEWAY?: string } };
 
-export const API_GATEWAY_URL: string =
-  PROCESS.ENV.API_GATEWAY ?? "http://localhost:3000";
+export const API_GATEWAY_URL: string = PROCESS.ENV.API_GATEWAY ?? 'http://localhost:3000';

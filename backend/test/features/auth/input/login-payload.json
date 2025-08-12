@@ -1,0 +1,20 @@
+{
+  "EXITOSO": {
+    "data": {
+      "email": "user@example.com",
+      "password": "correct-password"
+    }
+  },
+  "INVALID_EMAIL": {
+    "data": {
+      "email": "unknown@example.com",
+      "password": "any-password"
+    }
+  },
+  "INVALID_PASSWORD": {
+    "data": {
+      "email": "user@example.com",
+      "password": "wrong-password"
+    }
+  }
+}

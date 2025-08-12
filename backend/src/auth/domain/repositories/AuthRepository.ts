@@ -2,7 +2,7 @@
  * Contrato del repositorio de usuarios para autenticación.
  * Permite obtener un usuario por email sin exponer detalles de infraestructura.
  */
-import type { User } from "../entities/User";
+import type { User } from '../entities/User';
 
 export interface AuthRepository {
   /**

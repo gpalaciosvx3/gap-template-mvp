@@ -1,5 +1,11 @@
 node_modules
 dist
+frontend/dist
 coverage
-
-
+jest.config.ts
+package.json
+README.md
+tsconfig.json
+vite.config.ts
+.eslintrc.cjs
+.prettierrc.json

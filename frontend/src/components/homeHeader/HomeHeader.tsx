@@ -1,5 +1,9 @@
 /**
- * Header del layout Home (Material UI).
+ * Header del layout Home.
+ * Muestra la barra superior con el título de la aplicación.
+ *
+ * @param {{ title: string }} props Propiedades del componente
+ * @returns {JSX.Element} Barra de navegación superior
  */
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import React from "react";
@@ -7,9 +11,6 @@ import React from "react";
 import type { HomeHeaderProps } from "../../types/components";
 import "./HomeHeader.css";
 
-/**
- * Barra superior con el nombre de la app.
- */
 export default function HomeHeader({ title }: HomeHeaderProps): JSX.Element {
   return (
     <AppBar position="static" color="primary">

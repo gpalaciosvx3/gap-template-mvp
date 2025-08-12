@@ -9,12 +9,5 @@
  */
 declare const PROCESS: { ENV: { API_GATEWAY?: string } };
 
-/**
- * URL base del API Gateway. Toma su valor del .env de la raíz (API_GATEWAY).
- * Si no está definida, usa "http://localhost:3000" como valor por defecto.
- *
- * @constant
- * @type {string}
- */
 export const API_GATEWAY_URL: string =
   PROCESS.ENV.API_GATEWAY ?? "http://localhost:3000";

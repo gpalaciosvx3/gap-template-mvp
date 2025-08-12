@@ -11,9 +11,6 @@ let authTokenProvider: (() => string | null) | null = null;
 
 /**
  * Registra un proveedor global de token. Si el proveedor devuelve un valor,
- * se añadirá como cabecera `Authorization: Bearer <token>` a cada petición.
- *
- * @param {() => string | null} provider Función que devuelve el token o null
  */
 export function setAuthTokenProvider(provider: () => string | null): void {
   authTokenProvider = provider;
@@ -92,11 +89,6 @@ async function doFetch<T>(
 
 /**
  * Realiza una petición HTTP GET y retorna JSON tipado.
- *
- * @template T Tipo del cuerpo de respuesta esperado
- * @param {string} path Ruta relativa del recurso (e.g., "/health")
- * @param {RequestInit} [init] Opciones adicionales de fetch
- * @returns {Promise<T>} Respuesta JSON tipada
  */
 export function apiGet<T>(path: string, init?: RequestInit): Promise<T> {
   return doFetch<T>("GET", path, init);
@@ -104,13 +96,6 @@ export function apiGet<T>(path: string, init?: RequestInit): Promise<T> {
 
 /**
  * Realiza una petición HTTP POST con cuerpo JSON y retorna JSON tipado.
- *
- * @template T Tipo del cuerpo de respuesta esperado
- * @template B Tipo del cuerpo de solicitud
- * @param {string} path Ruta relativa del recurso
- * @param {B} [body] Cuerpo a enviar (se serializa a JSON)
- * @param {RequestInit} [init] Opciones adicionales de fetch
- * @returns {Promise<T>} Respuesta JSON tipada
  */
 export function apiPost<T, B = unknown>(
   path: string,

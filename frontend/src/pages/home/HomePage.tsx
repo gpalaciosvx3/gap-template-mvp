@@ -1,6 +1,8 @@
 /**
  * Página principal de la aplicación.
  * Renderiza el componente `Home` y dispara la consulta de salud del Gateway.
+ *
+ * @returns {JSX.Element} Estructura de la página Home con estado de salud
  */
 import { Typography, Box, Alert } from "@mui/material";
 import React from "react";
@@ -10,9 +12,6 @@ import { useHealth } from "../../hooks/health/useHealth";
 import HomeLayout from "../../layout/home/HomeLayout";
 import "./HomePage.css";
 
-/**
- * Componente de página que muestra "HOLA MUNDO" y el estado de /health.
- */
 export default function HomePage(): JSX.Element {
   const { data, isLoading, error } = useHealth();
 

@@ -3,9 +3,6 @@
  */
 import { createTheme } from "@mui/material/styles";
 
-/**
- * Tema base de la aplicación.
- */
 export const AppTheme = createTheme({
   palette: {
     mode: "light",

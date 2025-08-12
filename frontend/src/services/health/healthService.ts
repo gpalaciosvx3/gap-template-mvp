@@ -6,9 +6,9 @@ import { apiGet } from "../../api/http";
 import type { HealthResponse } from "../../types/health";
 
 /**
- * Consulta el estado del Gateway (`/health`).
+ * Obtiene el estado de salud del Gateway.
  *
- * @returns {Promise<HealthResponse>} Respuesta con `{ ok: boolean }`
+ * @returns {Promise<HealthResponse>} Objeto con el estado `{ ok: boolean }`
  */
 export async function getHealth(): Promise<HealthResponse> {
   return apiGet<HealthResponse>("/health");

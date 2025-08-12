@@ -8,7 +8,9 @@ import { getHealth } from "../../services/health/healthService";
 import type { UseHealthState } from "../../types/health";
 
 /**
- * Realiza la llamada al servicio de salud del Gateway y maneja su ciclo de vida.
+ * Realiza la consulta de salud del Gateway y expone estado de carga, datos y error.
+ *
+ * @returns {UseHealthState} Estado del hook con `data`, `isLoading` y `error`.
  */
 export function useHealth(): UseHealthState {
   const [state, setState] = useState<UseHealthState>({

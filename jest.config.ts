@@ -21,6 +21,7 @@ const config: Config = {
     '!backend/src/**/application/dto/**',
     '!backend/src/**/dto/**',
     '!backend/src/**/domain/entities/**',
+    '!backend/src/**/domain/repositories/**',
     '!backend/src/**/types/**',
     '!backend/src/**/mappers/**',
   ],

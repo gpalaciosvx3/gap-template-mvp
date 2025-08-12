@@ -1,4 +1,5 @@
-.homeHeader__toolbar {}
-.homeHeader__title { flex: 1; }
-
-
+.homeHeader__toolbar {
+}
+.homeHeader__title {
+  flex: 1;
+}

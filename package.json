@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "concurrently -n gateway,frontend -c blue,magenta \"npm:dev:gateway\" \"npm:dev:frontend\"",
     "dev:gateway": "ts-node-dev --respawn --transpile-only gateway/server.ts",
-    "dev:frontend": "vite frontend",
-    "build": "rimraf dist && tsc -p tsconfig.json && vite build frontend",
+    "dev:frontend": "vite",
+    "build": "rimraf dist && tsc -p tsconfig.json && vite build",
     "test": "jest --runInBand --coverage",
     "verify": "tsc -p tsconfig.json --noEmit && eslint . --ext .ts,.tsx,.js,.jsx && prettier --write ."
   },

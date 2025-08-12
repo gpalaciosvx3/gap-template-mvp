@@ -4,14 +4,8 @@
  */
 import { useEffect, useState } from "react";
 
-import { getHealth } from "../../services/health";
-import type { HealthResponse } from "../../services/health/types";
-
-interface UseHealthState {
-  data: HealthResponse | null;
-  isLoading: boolean;
-  error: string | null;
-}
+import { getHealth } from "../../services/health/healthService";
+import type { UseHealthState } from "../../types/health";
 
 /**
  * Realiza la llamada al servicio de salud del Gateway y maneja su ciclo de vida.
@@ -32,7 +26,8 @@ export function useHealth(): UseHealthState {
       })
       .catch((err: unknown) => {
         if (!isActive) return;
-        const message = err instanceof Error ? err.message : "Error desconocido";
+        const message =
+          err instanceof Error ? err.message : "Error desconocido";
         setState({ data: null, isLoading: false, error: message });
       });
 
@@ -43,5 +38,3 @@ export function useHealth(): UseHealthState {
 
   return state;
 }
-
-

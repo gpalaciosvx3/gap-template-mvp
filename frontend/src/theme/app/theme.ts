@@ -13,5 +13,3 @@ export const AppTheme = createTheme({
     secondary: { main: "#9c27b0" },
   },
 });
-
-

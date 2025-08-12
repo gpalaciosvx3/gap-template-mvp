@@ -2,23 +2,22 @@
  * Layout específico para el Home.
  * Incluye su propio Header y Footer.
  */
-import React from "react";
 import { Container, Box } from "@mui/material";
-import HomeHeader from "../../components/homeHeader/HomeHeader";
-import HomeFooter from "../../components/homeFooter/HomeFooter";
-import type { HomeHeaderProps, HomeFooterProps } from "../../types/components";
-import "./HomeLayout.css";
+import React from "react";
 
-export interface HomeLayoutProps {
-  children: React.ReactNode;
-  header: HomeHeaderProps;
-  footer: HomeFooterProps;
-}
+import HomeFooter from "../../components/homeFooter/HomeFooter";
+import HomeHeader from "../../components/homeHeader/HomeHeader";
+import type { HomeLayoutProps } from "../../types/components";
+import "./HomeLayout.css";
 
 /**
  * Composición base del layout Home.
  */
-export default function HomeLayout({ children, header, footer }: HomeLayoutProps): JSX.Element {
+export default function HomeLayout({
+  children,
+  header,
+  footer,
+}: HomeLayoutProps): JSX.Element {
   return (
     <Box display="flex" minHeight="100vh" flexDirection="column">
       <HomeHeader {...header} />
@@ -29,5 +28,3 @@ export default function HomeLayout({ children, header, footer }: HomeLayoutProps
     </Box>
   );
 }
-
-

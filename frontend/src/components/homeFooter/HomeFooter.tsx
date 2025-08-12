@@ -1,10 +1,11 @@
 /**
  * Footer del layout Home (Material UI).
  */
-import React from "react";
 import { Box, Typography } from "@mui/material";
-import "./HomeFooter.css";
+import React from "react";
+
 import type { HomeFooterProps } from "../../types/components";
+import "./HomeFooter.css";
 
 /**
  * Pie de página con una leyenda mínima.
@@ -18,5 +19,3 @@ export default function HomeFooter({ text }: HomeFooterProps): JSX.Element {
     </Box>
   );
 }
-
-

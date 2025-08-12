@@ -2,10 +2,11 @@
  * Componente Home minimalista.
  * Muestra un contenedor con el texto "HOLA MUNDO".
  */
-import React from "react";
 import { Box, Typography } from "@mui/material";
-import "./Home.css";
+import React from "react";
+
 import type { HomeProps } from "../../types/components";
+import "./Home.css";
 
 /**
  * Renderiza un contenedor con el saludo inicial.
@@ -19,5 +20,3 @@ export default function Home({ title }: HomeProps): JSX.Element {
     </Box>
   );
 }
-
-

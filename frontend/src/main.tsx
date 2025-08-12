@@ -2,12 +2,12 @@
  * Punto de entrada del Frontend (Vite + React).
  * Monta la aplicación en el elemento raíz.
  */
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { CssBaseline, ThemeProvider } from "@mui/material";
 
-import { AppTheme } from "./theme";
 import HomePage from "./pages/home/HomePage";
+import { AppTheme } from "./theme/app/theme";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -15,7 +15,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <CssBaseline />
       <HomePage />
     </ThemeProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
-
-

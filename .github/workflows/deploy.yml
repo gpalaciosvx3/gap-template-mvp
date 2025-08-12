@@ -1,0 +1,102 @@
+name: Deploy to Railway
+
+on:
+  push:
+    branches: [develop, master]
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      frontend-changed: ${{ steps.changes.outputs.frontend }}
+      backend-changed: ${{ steps.changes.outputs.backend }}
+      any-changed: ${{ steps.changes.outputs.frontend == 'true' || steps.changes.outputs.backend == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            frontend:
+              - 'frontend/**'
+              - 'vite.config.ts'
+              - 'package.json'
+            backend:
+              - 'backend/**'
+              - 'gateway/**'
+              - 'jest.config.ts'
+              - 'tsconfig.json'
+              - '.github/workflows/**'
+
+  deploy-test:
+    runs-on: ubuntu-latest
+    needs: [detect-changes]
+    if: ${{ (needs.detect-changes.outputs.frontend-changed == 'true' || needs.detect-changes.outputs.backend-changed == 'true') && github.ref == 'refs/heads/develop' }}
+    environment: test
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Build de proyecto
+        run: npm run build
+
+      - name: Deploy a Railway (Gateway)
+        run: |
+          npm install -g @railway/cli
+          railway up --service=${{ secrets.RAILWAY_SERVICE_ID }} --detach
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_TEST }}
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    needs: [detect-changes]
+    if: ${{ (needs.detect-changes.outputs.frontend-changed == 'true' || needs.detect-changes.outputs.backend-changed == 'true') && github.ref == 'refs/heads/master' }}
+    environment: production
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Build de proyecto
+        run: npm run build
+
+      - name: Deploy a Railway (Gateway)
+        run: |
+          npm install -g @railway/cli
+          railway up --service=${{ secrets.RAILWAY_SERVICE_ID }} --detach
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PROD }}
+
+  notify-result:
+    runs-on: ubuntu-latest
+    needs: [detect-changes, deploy-test, deploy-production]
+    if: always()
+    steps:
+      - name: Notificar resultado
+        run: |
+          echo "=== DEPLOY RESULTADO ==="
+          echo "Frontend cambios: ${{ needs.detect-changes.outputs.frontend-changed }}"
+          echo "Backend cambios: ${{ needs.detect-changes.outputs.backend-changed }}"
+          echo "Deploy TEST: ${{ needs.deploy-test.result }}"
+          echo "Deploy PRODUCTION: ${{ needs.deploy-production.result }}" 
